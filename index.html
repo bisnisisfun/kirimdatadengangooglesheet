@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Data User</title>
+</head>
+<body>
+  <h1>Isi Data Diri</h1>
+  <form id="userForm">
+    <label for="nama">Nama:</label><br>
+    <input type="text" id="nama" name="nama"><br>
+    <label for="alamat">Alamat:</label><br>
+    <input type="text" id="alamat" name="alamat"><br>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email"><br><br>
+    <button type="submit">Kirim</button>
+  </form>
+
+  <script>
+    document.getElementById('userForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      var nama = document.getElementById('nama').value;
+      var alamat = document.getElementById('alamat').value;
+      var email = document.getElementById('email').value;
+
+      // URL Web App dari Google Apps Script
+      var url = 'https://script.google.com/macros/s/AKfycbzyM7bJ0Fn3qbQWFXuFS4KtWvt5-KJRq3pI4QAJEjbuo8LsMJppNYNybFSkRqg7dsKv/exec';
+
+      var data = {
+        'nama': nama,
+        'alamat': alamat,
+        'email': email
+      };
+
+      fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          alert('Data berhasil dikirim');
+        } else {
+          alert('Terjadi kesalahan, coba lagi nanti');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

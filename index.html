@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Kirim Data</title>
+    <title>Form Kirim Data ke Google Sheets</title>
 </head>
 <body>
     <h1>Form Kirim Data ke Google Sheets</h1>
@@ -30,6 +30,7 @@
             var alamat = document.getElementById('alamat').value;
             var email = document.getElementById('email').value;
 
+            // Ganti URL di sini dengan URL Web App terbaru
             var url = 'https://script.google.com/macros/s/AKfycbyOcSAntvpX6zx4MyiHGkRwieCtMVtqOLM4mIod24Q/dev';
 
             var data = {
@@ -48,16 +49,17 @@
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => response.text())
+            .then(response => response.text())  // Parsing respons sebagai teks biasa
             .then(text => {
                 if (text.includes('Success')) {
+                    // Tampilkan pesan sukses
                     document.getElementById('responseMessage').style.display = 'block';
                 } else {
                     alert('Gagal mengirim data: ' + text);
                 }
             })
             .catch(error => {
-                console.log("Terjadi kesalahan saat mengirim fetch: ", error);
+                console.error("Terjadi kesalahan saat mengirim fetch: ", error);
                 alert('Terjadi kesalahan: ' + error);
             });
         });

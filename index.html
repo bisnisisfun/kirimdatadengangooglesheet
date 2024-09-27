@@ -38,6 +38,7 @@
                 'email': email
             };
 
+            // Kirim POST request
             fetch(url, {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -45,11 +46,14 @@
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => {
-                if (response.ok) {
+            .then(response => response.text())  // Parsing sebagai teks agar respons bisa dilihat
+            .then(text => {
+                if (text.includes('Success')) {
+                    // Jika berhasil, tampilkan pesan sukses
                     document.getElementById('responseMessage').style.display = 'block';
                 } else {
-                    alert('Gagal mengirim data. Silakan coba lagi.');
+                    // Jika gagal, tampilkan alert error
+                    alert('Gagal mengirim data: ' + text);
                 }
             })
             .catch(error => {

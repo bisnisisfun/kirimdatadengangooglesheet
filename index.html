@@ -24,13 +24,12 @@
 
     <script>
         document.getElementById('dataForm').addEventListener('submit', function(e) {
-            e.preventDefault();  // Mencegah reload halaman
+            e.preventDefault();
             
             var nama = document.getElementById('nama').value;
             var alamat = document.getElementById('alamat').value;
             var email = document.getElementById('email').value;
 
-            // URL Web App Google Apps Script Anda
             var url = 'https://script.google.com/macros/s/AKfycbzyM7bJ0Fn3qbQWFXuFS4KtWvt5-KJRq3pI4QAJEjbuo8LsMJppNYNybFSkRqg7dsKv/exec';
 
             var data = {
@@ -48,7 +47,6 @@
             })
             .then(response => {
                 if (response.ok) {
-                    // Menampilkan pesan berhasil
                     document.getElementById('responseMessage').style.display = 'block';
                 } else {
                     alert('Gagal mengirim data. Silakan coba lagi.');

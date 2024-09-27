@@ -30,7 +30,7 @@
             var alamat = document.getElementById('alamat').value;
             var email = document.getElementById('email').value;
 
-            var url = 'https://script.google.com/macros/s/AKfycbzyM7bJ0Fn3qbQWFXuFS4KtWvt5-KJRq3pI4QAJEjbuo8LsMJppNYNybFSkRqg7dsKv/exec';
+            var url = 'https://script.google.com/macros/s/AKfycbyOcSAntvpX6zx4MyiHGkRwieCtMVtqOLM4mIod24Q/dev';
 
             var data = {
                 'nama': nama,
@@ -38,7 +38,9 @@
                 'email': email
             };
 
-            // Kirim POST request
+            console.log("Mengirim data ke: ", url);
+            console.log("Data yang dikirim: ", data);
+
             fetch(url, {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -46,17 +48,16 @@
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => response.text())  // Parsing sebagai teks agar respons bisa dilihat
+            .then(response => response.text())
             .then(text => {
                 if (text.includes('Success')) {
-                    // Jika berhasil, tampilkan pesan sukses
                     document.getElementById('responseMessage').style.display = 'block';
                 } else {
-                    // Jika gagal, tampilkan alert error
                     alert('Gagal mengirim data: ' + text);
                 }
             })
             .catch(error => {
+                console.log("Terjadi kesalahan saat mengirim fetch: ", error);
                 alert('Terjadi kesalahan: ' + error);
             });
         });
